@@ -695,7 +695,13 @@ class LookupLocation(BaseModel):
         default=None,
         description="Optional name of the vector field within the collection. If not provided, the default vector field will be used.",
     )
-
+class MatchAny(BaseModel):
+    """
+    Exact matches of the given list of strings or string
+    """
+    
+    value: "ValueListVariants" = Field(..., description="Exact matches of the given list of values")
+        
 
 class MatchText(BaseModel):
     """
@@ -1440,6 +1446,12 @@ StorageType = Union[
 ]
 UsingVector = Union[
     StrictStr,
+]
+ValueListVariants= Union[
+    StrictBool,
+    StrictInt, 
+    StrictStr,
+    List
 ]
 ValueVariants = Union[
     StrictBool,
